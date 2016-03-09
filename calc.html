@@ -1,0 +1,466 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Pool Volume Calculator</title>
+<link href='https://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="http://www.doheny.com/skin/frontend/enterprise/refresh/js/jquery.min.1.8.3.js" ></script>
+<script type="text/javascript" src="jquery.numberformatter.js"></script>
+<style>
+*{
+	font-family: 'Questrial', sans-serif;
+}
+.calc-container{
+	height:370px;
+	width:300px;
+	position:relative;
+	border:1px solid #ccc;
+	overflow:hidden;
+}
+.calc-back-select{
+	position: absolute;
+	top: 40px;
+	right: 4px;
+	height: 10px;
+	width: 10px;
+	color: #b2def4;
+	cursor: pointer;
+	font-size: 10px;
+	border: 1px solid #b2def4;
+	padding: 0px 0px 1px 3px;
+}
+.rec-container-calc{
+	width:300px;
+	height:370px;
+	position:absolute;
+	top:0px;
+	left:305px;
+	background-image:url(bg-rectangle.jpg);
+	background-repeat:no-repeat;
+	background-position:0 70px;
+}
+.round-container-calc{
+	width:300px;
+	height:370px;
+	position:absolute;
+	top:0px;
+	left:305px;
+	background-image:url(bg-round.jpg);
+	background-repeat:no-repeat;
+	background-position:0 70px;
+}
+.oval-container-calc{
+	width:300px;
+	height:370px;
+	position:absolute;
+	top:0px;
+	left:305px;
+	background-image:url(bg-oval.jpg);
+	background-repeat:no-repeat;
+	background-position:0 70px;
+}
+.L-container-calc{
+	width:300px;
+	height:370px;
+	position:absolute;
+	top:0px;
+	left:305px;
+	background-image:url(bg-L.jpg);
+	background-repeat:no-repeat;
+	background-position:0 70px;
+}
+.shape-container-calc{
+	width:300px;
+	height:370px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	}
+.shape-select-contianer-calc{
+	width:80%;
+	height:60px;
+	margin:4px 10%;
+	cursor:pointer;
+	display:inline-block;
+	position:relative;
+}
+.shape-select-contianer-calc img{
+	display:inline-block;
+}
+.shape-select-contianer-calc .shape-select-label{
+	position:absolute;
+	left:110px;
+	top:34%;
+	color:#00a2e5;
+}
+.calc-container p {
+	font-size:20px;
+	color:#016a99;
+	text-align:center;
+	margin-top:10px;
+}
+.calc-container p span{
+	font-size:16px;
+	color:#c6c6c6;
+	text-align:center;
+}
+.calc-input{
+	width:30px;
+	padding:4px;
+	font-size:14px;
+	color:#00a2E5;
+	border:1px solid #00a2E5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	text-align:center;
+}
+.pCalLength-container-rec{
+	position:absolute;
+	top: 75px;
+	right: 130px;
+}
+
+.pCalWidth-container-rec{
+	position:absolute;
+	top: 144px;
+	right: 251px;
+}
+.pCalShallow-container-rec{
+	position:absolute;
+	top: 239px;
+	right: 11px;
+}
+.pCalDeep-container-rec{
+	position:absolute;
+	top: 253px;
+	right: 251px;
+}
+.calc-results-container-rec{
+	width:90%;
+	text-align:left;
+	height:22px;
+	vertical-align:text-top;
+	position:absolute;
+	top: 338px;
+	left:18px;
+}
+.pCalDiameter-container-round{
+	position:absolute;
+	top: 122px;
+	right: 165px;
+}
+.pCalDeep-container-round{
+	position:absolute;
+	top: 269px;
+	right: 165px;
+}
+.calc-results-container-round{
+	width:90%;
+	text-align:left;
+	height:22px;
+	vertical-align:text-top;
+	position:absolute;
+	top: 338px;
+	left:18px;
+}
+
+.pCalLengthOval{
+	position: absolute;
+	left: 130px;
+	top: 74px;
+}
+.pCalWidthOval{
+	position: absolute;
+	top: 142px;
+	left: 9px;
+}
+.pCalBowOval{
+	position: absolute;
+	top: 74px;
+	right: 9px;
+}
+.pCalShallowOval{
+	position: absolute;
+	top: 239px;
+	right: 11px;
+}
+.pCalDeepOval{
+	position: absolute;
+	top: 253px;
+	left: 9px;
+}
+.calc-results-container-oval{
+	width:90%;
+	text-align:left;
+	height:22px;
+	vertical-align:text-top;
+	position:absolute;
+	top: 338px;
+	left:18px;
+}
+
+.pCalShalLength-container-L{
+	left: 183px;
+	position: absolute;
+	top: 74px;
+}
+.pCalShalWidth-container-L{
+	position: absolute;
+	right: 10px;
+	top: 148px;
+}
+.pCalDeepLength-container-L{
+	position: absolute;
+	top: 125px;
+	left: 91px;
+	}
+.pCalDeepWidth-container-L{
+	position: absolute;
+	top: 175px;
+	left: 8px;
+	}
+.pCalShallow-container-L{
+	position: absolute;
+	top: 256px;
+	right: 10px;
+}
+.pCalDeep-container-L{
+	position: absolute;
+	top: 269px;
+	left: 8px;
+}
+.calc-results-container-L{
+	width:90%;
+	text-align:left;
+	height:22px;
+	vertical-align:text-top;
+	position:absolute;
+	top: 338px;
+	left:16px;
+}
+input.calc-output{
+	border:none;
+	font-size:15px;
+	color:#016a99;
+	display:inline-block;
+	width:66px;
+	text-align:right;
+}
+.gallons-label{
+	display:inline-block;
+	margin:4px 0 0 2px;
+	font-size:15px;
+	color:#016a99;
+}
+
+</style>
+<script>
+	function containerSlide(left, shape, leftReturn){
+		$(".shape-container-calc").animate({
+			  left: left
+			}, 500, function() {
+		 });
+		 $(shape).animate({
+			 left: leftReturn
+		   }, 500, function() {
+		});
+	}
+
+	$(document).ready(function() {
+		$('.rectangle-shape-select').click(function() {
+			containerSlide("-300px", ".rec-container-calc", "0px");
+		});
+		$('.round-shape-select').click(function() {
+			containerSlide("-300px", ".round-container-calc", "0px");
+		});
+		$('.oval-shape-select').click(function() {
+			containerSlide("-300px", ".oval-container-calc", "0px");
+		});
+		$('.L-shape-select').click(function() {
+			containerSlide("-300px", ".L-container-calc", "0px");
+		});
+		$('.calc-back-select').click(function() {
+			containerSlide("0px", ".all-shape-container-calc", "310px");
+		});
+	});
+   /*rectangle*/
+   $(document).ready(function() {
+       function compute() {
+		  var pCalWidthRec = $('.pCalWidthRec').val();
+		  var pCalLengthRec = $('.pCalLengthRec').val();
+		  var pCalShallowRec = $('.pCalShallowRec').val();
+		  var pCalDeepRec = $('.pCalDeepRec').val();
+		  var pAveDepthRec = ((pCalShallowRec * 1) + (pCalDeepRec * 1))/2;
+		  var pCubeFeetRec = pAveDepthRec * pCalWidthRec * pCalLengthRec;
+		  var pTotalRec = pCubeFeetRec * 7.48;
+		  var pTotal2Rec = Math.floor(pTotalRec * 1) / 1;
+		  $('.galResultRec').val(pTotal2Rec);
+		}
+		  $('.pCalWidthRec, .pCalLengthRec, .pCalShallowRec, .pCalDeepRec').keyup(compute);
+		});
+  /*end rectangle*/
+
+  /*round*/
+   $(document).ready(function() {
+       function compute() {
+		  var pCalDiameterRound = $('.pCalDiameterRound').val();
+		  var pCalDeepRound = $('.pCalDeepRound').val();
+		  var pCalDiameterSquaredRound = Math.pow(pCalDiameterRound, 2);
+		  var pTotalRound = pCalDeepRound * pCalDiameterSquaredRound * 5.9;
+		  var pTotal2Round = Math.floor(pTotalRound * 1) / 1;
+		  $('.galResultRound').val(pTotal2Round);
+		 }
+		  $('.pCalDiameterRound, .pCalDeepRound').keyup(compute);
+		});
+  /*end round*/
+
+  /*oval*/
+   $(document).ready(function() {
+       function compute() {
+		  var pCalWidthOval = $('.pCalWidthOval').val();
+		  var pCalLengthOval = $('.pCalLengthOval').val();
+		  var pCalBowOval = $('.pCalBowOval').val();
+		  var pCalShallowOval = $('.pCalShallowOval').val();
+		  var pCalDeepOval = $('.pCalDeepOval').val();
+		  var pAveDepthOval = ((pCalShallowOval * 1) + (pCalDeepOval * 1))/2;
+		  var pCubeFeetOval = pAveDepthOval * pCalWidthOval * pCalLengthOval;
+		  var pTotalRecOval = pCubeFeetOval * 7.48;
+		  var pCalDiameterOval  = pCalBowOval * 2;
+		  var pCalDiameterVolumnOval = Math.pow(pCalDiameterOval, 2);
+		  var pTotalBowOval = pAveDepthOval * pCalDiameterVolumnOval * 5.9;
+		  var pTotalOval = (pTotalRecOval * 1) + (pTotalBowOval * 1);
+		  var pTotal2Oval = Math.floor(pTotalOval * 1) / 1;
+		  $('.galResultOval').val(pTotal2Oval);
+		}
+		  $('.pCalWidthOval, .pCalLengthOval, .pCalBowOval, .pCalShallowOval, .pCalDeepOval').keyup(compute);
+		});
+  /*end oval*/
+
+  /*L-shape*/
+   $(document).ready(function() {
+       function compute() {
+			  var pCalShalLengthL = $('.pCalShalLengthL').val();
+			  var pCalShalWidthL = $('.pCalShalWidthL').val();
+			  var pShallowAreaL = pCalShalLengthL * pCalShalWidthL;
+			  var pCalDeepLengthL = $('.pCalDeepLengthL').val();
+			  var pCalDeepWidthL = $('.pCalDeepWidthL').val();
+			  var pCalShallowL = $('.pCalShallowL').val();
+			  var pCalDeepL = $('.pCalDeepL').val();
+			  var pAveDepthL = ((pCalShallowL * 1) + (pCalDeepL * 1))/2;
+			  var pCubeFeetL = pAveDepthL * pCalDeepWidthL * pCalDeepLengthL;
+			  var pTotalDeepL = pCubeFeetL * 7.48;
+			  var pCubeShallowL = pShallowAreaL * pCalShallowL;
+			  var pTotalShallowL = pCubeShallowL * 7.48;
+			  var pTotalL = (pTotalShallowL * 1) + (pTotalDeepL * 1);
+			  var pTotal2L = Math.floor(pTotalL * 1) / 1;
+			  $('.galResultL').val(pTotal2L);
+		  }
+		  $('.pCalShalLengthL, .pCalShalWidthL, .pCalDeepLengthL, .pCalDeepWidthL, .pCalShallowL, .pCalDeepL').keyup(compute);
+		});
+  /*end L-shape*/
+
+</script>
+ <script>
+		$(document).ready(function() {
+            $(".calc-output").each(function() {
+                $(this).format({format:"#,###", locale:"us"});
+            });
+        });
+</script>
+</head>
+
+<body>
+    <div class="calc-container">
+    	<div class="shape-container-calc">
+        <p>Calculate Your Pools Volume<br /><span>select your pool shape below</span></p>
+        	<div class="shape-select-contianer-calc rectangle-shape-select">
+            <img src="http://www.doheny.com/media/images/custom-safety-covers/custome-safety-home-rectangle.jpg" width="86" heigsht="54" />
+                <div class="shape-select-label">Rectangle</div>
+            </div>
+            <div class="shape-select-contianer-calc round-shape-select">
+            <img src="http://www.doheny.com/media/images/custom-safety-covers/custome-safety-home-round.jpg" width="86" heigsht="54" />
+                <div class="shape-select-label">Round</div>
+            </div>
+            <div class="shape-select-contianer-calc oval-shape-select">
+            <img src="http://www.doheny.com/media/images/custom-safety-covers/custome-safety-home-oval.jpg" width="86" heigsht="54" />
+                <div class="shape-select-label">Oval</div>
+            </div>
+            <div class="shape-select-contianer-calc L-shape-select">
+            <img src="http://www.doheny.com/media/images/custom-safety-covers/custome-safety-home-true-l-left.jpg" width="86" heigsht="54" />
+                <div class="shape-select-label">L-Shape</div>
+            </div>
+         </div>
+
+        <div class="rec-container-calc all-shape-container-calc">
+            <p>Enter Your Pool's Dimensions<br /><span>round to the nearest foot</span></p>
+            <div class="calc-back-select"><</div>
+            <form>
+                <div class="pCalLength-container-rec"><input class="calc-input pCalLengthRec" type="text" name="" placeholder="" /></div>
+                <div class="pCalWidth-container-rec"><input class="calc-input pCalWidthRec" type="text" name="" placeholder="" /></div>
+                <div class="pCalShallow-container-rec"><input class="calc-input pCalShallowRec" type="text" name="" placeholder="" /></div>
+                <div class="pCalDeep-container-rec"><input class="calc-input pCalDeepRec" type="text" name="" placeholder="" /></div>
+
+                <div class="calc-results-container-rec">
+                    <div class="gallons-label">Your pool holds :&nbsp;~</div>
+                    <input class="galResultRec calc-output" type="text" name="" placeholder="00" />
+                    <div class="gallons-label">Gallons</div>
+                </div>
+            </form>
+        </div>
+
+        <div class="round-container-calc all-shape-container-calc">
+            <p>Enter Your Pool's Dimensions<br /><span>round to the nearest foot</span></p>
+            <div class="calc-back-select"><</div>
+            <form>
+                <div class="pCalDiameter-container-round"><input class="calc-input pCalDiameterRound" type="text" name="" placeholder="" /></div>
+                <div class="pCalDeep-container-round"><input class="calc-input pCalDeepRound" type="text" name="" placeholder="" /></div>
+
+                <div class="calc-results-container-round">
+                    <div class="gallons-label">Your pool holds:&nbsp;~</div>
+                    <input class="calc-output galResultRound" type="text" name="" placeholder="00" />
+                    <div class="gallons-label">Gallons</div>
+                </div>
+            </form>
+        </div>
+
+        <div class="oval-container-calc all-shape-container-calc">
+            <p>Enter Your Pool's Dimensions<br /><span>round to the nearest foot</span></p>
+            <div class="calc-back-select"><</div>
+            <form>
+                <div class="pCalLength-container-oval"><input class="calc-input pCalLengthOval" type="text" name="" placeholder="" /></div>
+                <div class="pCalWidth-container-oval"><input class="calc-input pCalWidthOval" type="text" name="" placeholder="" /></div>
+                <div class="pCalBow-container-oval"><input class="calc-input pCalBowOval" type="text" name="" placeholder="" /></div>
+                <div class="pCalShallow-container-oval"><input class="calc-input pCalShallowOval" type="text" name="" placeholder="" /></div>
+                <div class="pCalDeep-container-oval"><input class="calc-input pCalDeepOval" type="text" name="" placeholder="" /></div>
+
+                <div class="calc-results-container-oval">
+                    <div class="gallons-label">Your pool holds :&nbsp;~</div>
+                    <input class="calc-output galResultOval" type="text" name="" placeholder="00" />
+                    <div class="gallons-label">Gallons</div>
+                </div>
+            </form>
+        </div>
+
+        <div class="L-container-calc all-shape-container-calc">
+            <p>Enter Your Pool's Dimensions<br /><span>round to the nearest foot</span></p>
+            <div class="calc-back-select"><</div>
+            <form>
+                <div class="pCalShalLength-container-L"><input class="calc-input pCalShalLengthL" type="text" name="" placeholder="" /></div>
+                <div class="pCalShalWidth-container-L"><input class="calc-input pCalShalWidthL" type="text" name="" placeholder="" /></div>
+                <div class="pCalDeepLength-container-L"><input class="calc-input pCalDeepLengthL" type="text" name="" placeholder="" /></div>
+                <div class="pCalDeepWidth-container-L"><input class="calc-input pCalDeepWidthL" type="text" name="" placeholder="" /></div>
+                <div class="pCalShallow-container-L"><input class="calc-input pCalShallowL" type="text" name="" placeholder="" /></div>
+                <div class="pCalDeep-container-L"><input class="calc-input pCalDeepL" type="text" name="deep" placeholder="" /></div>
+
+                <div class="calc-results-container-L">
+                    <div class="gallons-label">Your pool holds :&nbsp;~</div>
+                    <input class="calc-output galResultL" type="text" name="" placeholder="00" />
+                    <div class="gallons-label">Gallons</div>
+                </div>
+            </form>
+        </div>
+
+     </div><!--end calc contianer-->
+</body>
+</html>
